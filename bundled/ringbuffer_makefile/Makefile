@@ -36,7 +36,7 @@ RPATH ?= -Wl,-rpath,'@executable_path/../lib' -Wl,-rpath,'@executable_path'
 LDFLAGS ?= -mmacosx-version-min=10.8 
 
 else ifneq ($(findstring MSYS,$(shell uname)),)
-libdir ?= $(bindir)
+libdir = $(bindir)
 SHLIB_EXT ?= dll
 EXE_EXT ?= .exe
 else
