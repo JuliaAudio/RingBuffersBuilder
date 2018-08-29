@@ -1,34 +1,33 @@
 language: julia
 os:
-  - linux
+- linux
 julia:
-  - 0.6
+- 0.6
 notifications:
   email: false
 git:
   depth: 99999999
 cache:
   directories:
-    - downloads
+  - downloads
 env:
   global:
-    - BINARYBUILDER_DOWNLOADS_CACHE=downloads
-    - BINARYBUILDER_ROOTFS_DIR=rootfs
+  - BINARYBUILDER_DOWNLOADS_CACHE=downloads
+  - BINARYBUILDER_ROOTFS_DIR=rootfs
 sudo: required
-
-# Before anything else, get the latest versions of things
 before_script:
-  - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryProvider.jl")'
-  - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryBuilder.jl"); Pkg.build()'
-
+- julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryProvider.jl");
+    Pkg.clone("https://github.com/JuliaPackaging/BinaryBuilder.jl");
+    Pkg.build()'
 script:
-  - julia build_tarballs.jl
-
-# deploy:
-#   provider: releases
-#   file_glob: true
-#   file: products/*.tar.gz
-#   skip_cleanup: true
-#   on:
-#     repo: JuliaAudio/RingBuffersBuilder
-#     tags: true
+- julia build_tarballs.jl
+deploy:
+  provider: s3
+  access_key_id: AKIAJIWEF6EL3Z2RAOWA
+  secret_access_key:
+    secure: ukipDW8kDk71WHdsW/sH9PCbKlDxpyq22VUYForyLQ1oHTdxlojoywtFMnyp0bsnfnHJXfhrcxU7tOUTrlIgJcC5URT4WNUif7g0ArI4mPjQ11L0UlYCykqI8nBgO09WiM1WF/67Q9Jxcs+Nx+mbneyw9i21qfUh2Vjts5PltnzpQGNj2m6e2yQxldjguLmkGPByCMRgEr7/CPp1ipP8OqMj/0gw+mXHc7H69sbFadb8HVOarHnAmFkLJGoNn44laKAhCez2EYmw0jpvvA1S0lCa0dhepOsMV19XoQikRwoF80+j4JFHTC0dB74IdW7bSZ4X1tKNwPXT2MkOxkjVL8Y99kqBQhlF05K5mWkEQzFW43cqNJAkKW+ggaHiJ73YryugBqr4mZTf5jCSnvUyv2R0fUcv4fOT3ZcZ0TeLfNbdphAxfVtPR8gIjY7XcOFQliLhLCa9klyFJt4aIJ492k5+wVLtJ6/ZTc9nJkUpsnw+ci7E8+3t3GHYA9UVZMVLhsP40iN4JRIb+QTGZhEmKwE6wTNILXcBj+PwMu2JDKhHtZCB8/iW+TRjA8tc3mpSbE7JOBmcR9HF5Y+ZW6A4zNPDk6ZkVq/bvNRT8oOG5ImupNQ1fxMeBMupsEFbhj8Z/0en+I3SInYEOj5q4isOrtdlBIsj3jq/3JTCAkhFZOM=
+  bucket: ringbuffersbuilder
+  local-dir: products
+  acl: public_read
+  on:
+    repo: JuliaAudio/RingBuffersBuilder
