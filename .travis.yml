@@ -16,9 +16,8 @@ env:
   - BINARYBUILDER_ROOTFS_DIR=rootfs
 sudo: required
 before_script:
-- julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryProvider.jl");
-    Pkg.clone("https://github.com/JuliaPackaging/BinaryBuilder.jl");
-    Pkg.build()'
+- julia -e 'Pkg.add("BinaryProvider");
+    Pkg.add("BinaryBuilder")'
 script:
 - julia build_tarballs.jl
 deploy:
