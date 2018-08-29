@@ -57,8 +57,8 @@ $(incdir):
 
 
 # Lists of sources
-HEADERS=../portaudio/src/common/pa_ringbuffer.h
-SRCS=../portaudio/src/common/pa_ringbuffer.c
+HEADERS=portaudio/src/common/pa_ringbuffer.h
+SRCS=portaudio/src/common/pa_ringbuffer.c
 
 # This is the target that actually builds `pa_ringbuffer.{so,dll,dylib}`.
 $(TARGET_BASENAME).$(SHLIB_EXT): $(SRCS) $(HEADERS) Makefile
