@@ -17,7 +17,9 @@ env:
 sudo: required
 before_script:
 - julia -e 'Pkg.add("BinaryProvider");
-    Pkg.add("BinaryBuilder")'
+    Pkg.checkout("BinaryProvider");
+    Pkg.add("BinaryBuilder");
+    Pkg.checkout("BinaryBuilder")'
 script:
 - julia build_tarballs.jl
 deploy:
