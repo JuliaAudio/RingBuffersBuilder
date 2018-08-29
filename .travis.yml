@@ -20,7 +20,7 @@ before_script:
     Pkg.add(PackageSpec(name="BinaryProvider", rev="master"));
     Pkg.add(PackageSpec(name="BinaryBuilder", rev="master"))'
 script:
-- julia build_tarballs.jl
+- BINARYBUILDER_AUTOMATIC_APPLE=true julia build_tarballs.jl
 deploy:
   provider: s3
   access_key_id: AKIAJIWEF6EL3Z2RAOWA
