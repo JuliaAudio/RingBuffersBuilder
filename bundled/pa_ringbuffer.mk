@@ -61,7 +61,7 @@ HEADERS=portaudio/src/common/pa_ringbuffer.h
 SRCS=portaudio/src/common/pa_ringbuffer.c
 
 # This is the target that actually builds `pa_ringbuffer.{so,dll,dylib}`.
-$(TARGET_BASENAME).$(SHLIB_EXT): $(SRCS) $(HEADERS) Makefile
+$(TARGET_BASENAME).$(SHLIB_EXT): $(SRCS) $(HEADERS) pa_ringbuffer.mk
 	@# This expands out to something like:
 	@# gcc -fPIC -g -o pa_ringbuffer.so -shared
 	$(CC) $(CPPFLAGS) $(CFLAGS) $(SRCS) -o $@ $(INSTALL_NAME) -shared
