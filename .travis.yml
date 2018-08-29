@@ -1,8 +1,8 @@
 language: julia
 os:
-- linux
+  - linux
 julia:
-- 0.7
+  - 0.7
 notifications:
   email: false
 git:
@@ -12,15 +12,15 @@ git:
 #   - downloads
 env:
   global:
-  - BINARYBUILDER_DOWNLOADS_CACHE=downloads
-  - BINARYBUILDER_ROOTFS_DIR=rootfs
+    - BINARYBUILDER_DOWNLOADS_CACHE=downloads
+    - BINARYBUILDER_ROOTFS_DIR=rootfs
 sudo: required
 before_script:
-- julia --color=yes -e 'using Pkg;
-    Pkg.add(PackageSpec(name="BinaryProvider", rev="master"));
-    Pkg.add(PackageSpec(name="BinaryBuilder", rev="master"))'
+  - julia --color=yes -e 'using Pkg;
+      Pkg.add(PackageSpec(name="BinaryProvider", rev="master"));
+      Pkg.add(PackageSpec(name="BinaryBuilder", rev="master"))'
 script:
-- BINARYBUILDER_AUTOMATIC_APPLE=true julia --color=yes build_tarballs.jl
+  - BINARYBUILDER_AUTOMATIC_APPLE=true julia --color=yes build_tarballs.jl
 deploy:
   provider: s3
   access_key_id: AKIAJIWEF6EL3Z2RAOWA
@@ -30,5 +30,6 @@ deploy:
   local_dir: products
   acl: public_read
   skip_cleanup: true
+  region: us-east-2
   on:
     repo: JuliaAudio/RingBuffersBuilder
