@@ -2,7 +2,7 @@ language: julia
 os:
 - linux
 julia:
-- 0.6
+- 0.7
 notifications:
   email: false
 git:
@@ -16,10 +16,9 @@ env:
   - BINARYBUILDER_ROOTFS_DIR=rootfs
 sudo: required
 before_script:
-- julia -e 'Pkg.add("BinaryProvider");
-    Pkg.checkout("BinaryProvider");
-    Pkg.add("BinaryBuilder");
-    Pkg.checkout("BinaryBuilder")'
+- julia -e 'using Pkg;
+    Pkg.add(PackageSpec(name="BinaryProvider", rev="master"));
+    Pkg.add(PackageSpec(name="BinaryBuilder", rev="master"))'
 script:
 - julia build_tarballs.jl
 deploy:
