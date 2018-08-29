@@ -7,20 +7,20 @@ notifications:
   email: false
 git:
   depth: 99999999
-cache:
-  directories:
-  - downloads
+# cache:
+#   directories:
+#   - downloads
 env:
   global:
   - BINARYBUILDER_DOWNLOADS_CACHE=downloads
   - BINARYBUILDER_ROOTFS_DIR=rootfs
 sudo: required
 before_script:
-- julia -e 'using Pkg;
+- julia --color=yes -e 'using Pkg;
     Pkg.add(PackageSpec(name="BinaryProvider", rev="master"));
     Pkg.add(PackageSpec(name="BinaryBuilder", rev="master"))'
 script:
-- BINARYBUILDER_AUTOMATIC_APPLE=true julia build_tarballs.jl
+- BINARYBUILDER_AUTOMATIC_APPLE=true julia --color=yes build_tarballs.jl
 deploy:
   provider: s3
   access_key_id: AKIAJIWEF6EL3Z2RAOWA
