@@ -20,7 +20,7 @@ CFLAGS ?= -g -fPIC
 # We do our best here to set up rpaths and shared library extensions and
 # whatnot properly here, but note that within BinaryBuilder the RPATH stuff
 # will get fixed up automatically, and shared library extensions and whatnot
-# are available through the ${shlib_ext} environment variable.  
+# are available through the ${shlib_ext} environment variable.
 ifeq ($(shell uname),Darwin)
 # On Darwin, we tell the linker to set the "install name" (e.g. dependent
 # objects should embed within themselves to find this object) to be relative
@@ -33,7 +33,7 @@ RPATH ?= -Wl,-rpath,'@executable_path/../lib' -Wl,-rpath,'@executable_path'
 
 # We default to a macosx minimum deployment target of 10.8.  BinaryBuilder
 # will automatically do this for you.
-LDFLAGS ?= -mmacosx-version-min=10.8 
+LDFLAGS ?= -mmacosx-version-min=10.8
 
 else ifneq ($(findstring MSYS,$(shell uname)),)
 libdir = $(bindir)
@@ -57,7 +57,7 @@ $(incdir):
 
 
 # Lists of sources
-HEADERS=../portaudio/src/common/pa_ringbuffer.h 
+HEADERS=../portaudio/src/common/pa_ringbuffer.h
 SRCS=../portaudio/src/common/pa_ringbuffer.c
 
 # This is the target that actually builds `pa_ringbuffer.{so,dll,dylib}`.

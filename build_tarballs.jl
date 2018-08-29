@@ -1,7 +1,7 @@
 using BinaryBuilder
 
 name = "PortAudioRingBuffers"
-version = v"2016.10.30"
+version = v"19.6.0"
 
 # Include both the PortAudio sources, and our "bundled" directory, which contains
 # our custom Makefile to build just the ringbuffers.
@@ -13,8 +13,8 @@ sources = [
 
 # Bash recipe for building across all platforms
 script = raw"""
-cd $WORKSPACE/srcdir/ringbuffer_makefile/
-make install
+cd $WORKSPACE/srcdir/
+make -f pa_ringbuffer.mk install
 """
 
 # These are the platforms we will build for by default, unless further
