@@ -1,6 +1,6 @@
 using BinaryBuilder
 
-name = "PortAudioRingBuffers"
+name = "pa_ringbuffer"
 version = v"19.6.0"
 
 # Include both the PortAudio sources, and our "bundled" directory, which contains
